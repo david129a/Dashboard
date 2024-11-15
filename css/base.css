@@ -1,0 +1,280 @@
+:root {
+  --bs-blue: #0d6efd;
+  --bs-blue1: #183A4D;
+  --bs-blue2: #255774;
+  --bs-blue3: #518FAE;
+  --bs-blue0: #F7FAFB;
+
+  --bs-blue1a: #023D50;
+  --bs-blue2a: #08759E;
+  --bs-blue3a: #518FAE;
+  --bs-blue0a: #F6FAFB;
+
+  --bs-graph_blue1: #BCD6E1;
+  --bs-graph_blue2: #4B93B1;
+  --bs-graph_grey1: #D0D1D3;
+  --bs-graph_grey2: #918F8B;
+  --bs-graph_yellow1: #F7E1C5;
+  --bs-graph_yellow2: #E8AB5F;
+  --bs-graph_red1: #F5C7BE;
+  --bs-graph_red2: #EFAEA2;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+  }
+/* Ensures the dropdown stays within the viewport */
+.dropdown-menu-end {
+    right: 0; /* Aligns the menu to the right edge */
+    left: auto; /* Prevents it from aligning to the left */
+    position: absolute; /* Ensures dropdown doesn't overflow */
+    max-width: 100vw; /* Limits the menu width to the viewport width */
+    overflow-x: hidden; /* Prevents horizontal overflow */
+    z-index: 1050; /* Makes sure the dropdown is on top of other elements */
+}
+.sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
+    padding: 1.75rem 1rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
+    /*color: rgba(255, 255, 255, 0.25);*/
+    color: var(--bs-blue1);
+}
+.sb-sidenav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-wrap: nowrap;
+}
+.sb-sidenav .sb-sidenav-menu {
+    flex-grow: 1;
+}
+.sb-sidenav .sb-sidenav-menu .nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: var(--bs-link-hover-color);
+    --bs-nav-link-disabled-color: #6c757d;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+
+
+
+
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+/* Top Navbar */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  /*background-color: #333;*/
+  background-color: var(--bs-blue1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.top-navbar-left h1 {
+  font-size: 1.5em;
+}
+
+.top-navbar-right {
+  position: relative;
+}
+
+.top-navbar-right .menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Dropdown menu */
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  /*background-color: #444;*/
+  background-color: var(--bs-blue1);
+  color: #fff;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dropdown a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+.dropdown a:hover {
+  /*background-color: #555;*/
+  background-color: var(--bs--blue3);
+}
+
+/* Sidebar */
+.side-navbar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 200px;
+  height: calc(100% - 60px);
+  /*background-color: #222;*/
+  background-color: var(--bs-blue1);
+  color: #ddd;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  padding: 10px 20px;
+}
+
+.sidebar-section h3 {
+  font-size: 1.1em;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.sidebar-section a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  padding: 5px 0;
+}
+
+.sidebar-section a:hover {
+  color: #fff;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* Collapsible submenu */
+.sub-menu {
+  display: none;
+  padding-left: 20px;
+}
+
+
+/* Main Content */
+.content {
+    margin-top: 60px;
+    margin-left: 200px; /* To account for sidebar width */
+    padding: 20px;
+    width: calc(100% - 200px); /* Make the content area span the remaining width */
+    height: calc(100vh - 60px); /* Make it full height minus the navbar height */
+    overflow-y: auto;
+    background-color: var(--bs-blue0);
+}
+
+
+
+/* Fixed Header */
+.fixed-header {
+  position: fixed;
+  top: 60px;
+  left: 200px;
+  width: calc(100% - 200px);
+  background-color: #f4f4f9;
+  z-index: 900;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Scrollable Content */
+.scrollable-content {
+  margin-top: 100px; /* Add space for the fixed header */
+  overflow-y: auto;
+  height: calc(100vh - 140px); /* Height adjusted for navbar and fixed header */
+  padding: 20px;
+}
+/* Card styling */
+
+/* Card header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Download button */
+.btn-download {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.btn-download:hover {
+  background-color: #0056b3;
+}
+.breadcrumb {
+  --bs-breadcrumb-padding-x: 0;
+  --bs-breadcrumb-padding-y: 0;
+  --bs-breadcrumb-margin-bottom: 1rem;
+  --bs-breadcrumb-bg: ;
+  --bs-breadcrumb-border-radius: ;
+  --bs-breadcrumb-divider-color: #6c757d;
+  --bs-breadcrumb-item-padding-x: 0.5rem;
+  --bs-breadcrumb-item-active-color: #6c757d;
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x);
+  margin-bottom: var(--bs-breadcrumb-margin-bottom);
+  font-size: var(--bs-breadcrumb-font-size);
+  list-style: none;
+  background-color: var(--bs-breadcrumb-bg);
+  border-radius: var(--bs-breadcrumb-border-radius);
+}
