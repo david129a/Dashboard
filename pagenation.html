@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Pagination Example</title>
+    <style>
+        /* Style for pagination buttons */
+        .pagination-button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .pagination-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination-button.active {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <table id="exampleTable" border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows -->
+            <tr><td>John Doe</td><td>Developer</td><td>New York</td></tr>
+            <tr><td>Jane Smith</td><td>Designer</td><td>San Francisco</td></tr>
+            <tr><td>Jim Brown</td><td>Manager</td><td>Los Angeles</td></tr>
+            <tr><td>Emily Davis</td><td>Analyst</td><td>Chicago</td></tr>
+            <tr><td>Michael Johnson</td><td>Intern</td><td>Miami</td></tr>
+            <tr><td>Sarah Lee</td><td>Consultant</td><td>Houston</td></tr>
+            <tr><td>Robert Green</td><td>CEO</td><td>Seattle</td></tr>
+            <tr><td>Laura White</td><td>HR</td><td>Denver</td></tr>
+            <tr><td>Tom Black</td><td>IT Support</td><td>Boston</td></tr>
+            <tr><td>Alice Brown</td><td>Sales</td><td>Philadelphia</td></tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+    <!-- Pagination Controls -->
+    <div id="paginationControls"></div>
+
+    <script>
+        // Pagination function
+        function createPagination(tableId, rowsPerPage) {
+            const table = document.getElementById(tableId);
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.rows);
+            const totalRows = rows.length;
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+            const paginationControls = document.getElementById("paginationControls");
+            paginationControls.innerHTML = ""; // Clear any existing controls
+
+            let currentPage = 1;
+
+            // Function to display rows for the current page
+            function displayPage(page) {
+                const startIndex = (page - 1) * rowsPerPage;
+                const endIndex = startIndex + rowsPerPage;
+
+                rows.forEach((row, index) => {
+                    row.style.display = index >= startIndex && index < endIndex ? "" : "none";
+                });
+            }
+
+            // Function to create a button
+            function createButton(label, page) {
+                const button = document.createElement("button");
+                button.textContent = label;
+                button.className = "pagination-button";
+                button.disabled = page === currentPage; // Disable if it's the current page
+                if (page === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = page;
+                    displayPage(currentPage);
+                    updateButtons();
+                });
+                return button;
+            }
+
+            // Function to update the pagination controls
+            function updateButtons() {
+                paginationControls.innerHTML = ""; // Clear current controls
+
+                // Add "Previous" button
+                if (currentPage > 1) {
+                    paginationControls.appendChild(createButton("Previous", currentPage - 1));
+                }
+
+                // Add page number buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    paginationControls.appendChild(createButton(i, i));
+                }
+
+                // Add "Next" button
+                if (currentPage < totalPages) {
+                    paginationControls.appendChild(createButton("Next", currentPage + 1));
+                }
+            }
+
+            // Initialize pagination
+            displayPage(currentPage);
+            updateButtons();
+        }
+
+        // Apply pagination on DOMContentLoaded
+        document.addEventListener("DOMContentLoaded", () => {
+            createPagination("exampleTable", 5); // Table ID and rows per page
+        });
+    </script>
+</body>
+</html>
